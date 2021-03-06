@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
-
 import Backdrop from './BackDrop';
 import './Modal.css';
 
@@ -33,7 +32,7 @@ const Modal = props => {
     <React.Fragment>
       {props.show && <Backdrop onClick={props.onCancel} />}
       <CSSTransition
-        in={props.show}
+        in={props.show} 
         mountOnEnter
         unmountOnExit
         timeout={200}
