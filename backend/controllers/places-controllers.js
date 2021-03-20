@@ -74,7 +74,7 @@ const createPlace = async (req, res, next) => {
 
   let coordinates;
   try {
-    coordinates = await getCoordsForAddress(address);
+    coordinates = await getCoordsForAddress();
   } catch (error) {
     return next(error);
   }
@@ -102,7 +102,7 @@ const createPlace = async (req, res, next) => {
     return next(error);
   }
 
-  console.log(user);
+  //console.log(user);
 
   try {
     const sess = await mongoose.startSession();

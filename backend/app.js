@@ -5,9 +5,11 @@ const UserRoutes = require("./routes/user-routes");
 const HttpError = require("./models/http-error");
 const mongoose = require("mongoose");
 const db_config = require("./util/DB-config");
+const cors = require('cors');
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
 
 app.use("/api/places", placeRoutes);
 app.use("/api/users", UserRoutes);
@@ -29,5 +31,5 @@ app.use((error, req, res, next) => {
 const URL = db_config.URL;
 mongoose
   .connect(URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => app.listen(4000))
+  .then(() => app.listen(4000)).then(()=>console.log('Database connected'))
   .catch((err) => console.log(err));
