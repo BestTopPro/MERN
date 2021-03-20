@@ -5,6 +5,7 @@ import Button from "../../shared/components/UIElements/FormElements/Button";
 import Input from "../../shared/components/UIElements/FormElements/Input";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import ErrorModal from "../../shared/components/UIElements/ErrorModal";
+import ImageUpload from '../../shared/components/UIElements/FormElements/ImageUpload';
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_MINLENGTH,
@@ -41,6 +42,7 @@ const Auth = () => {
         {
           ...formState.inputs,
           name: undefined,
+          image: undefined
         },
         formState.inputs.email.isValid && formState.inputs.password.isValid
       );
@@ -52,6 +54,10 @@ const Auth = () => {
             value: "",
             isValid: false,
           },
+          image: {
+            value: null,
+            isValid: false
+          }
         },
         false
       );
@@ -61,6 +67,7 @@ const Auth = () => {
   };
   const formSubmitHandler = async (event) => {
     event.preventDefault();
+    console.log(formState.inputs);
     if (isLoginMode) {
       try {
         const responseData = await sendRequest(
@@ -115,6 +122,7 @@ const Auth = () => {
               onInput={inputHandler}
             />
           )}
+          {!isLoginMode && <ImageUpload center id="image" onInput={inputHandler}/>}
           <Input
             element="input"
             id="email"
