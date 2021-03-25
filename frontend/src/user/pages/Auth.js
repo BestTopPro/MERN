@@ -5,7 +5,7 @@ import Button from "../../shared/components/UIElements/FormElements/Button";
 import Input from "../../shared/components/UIElements/FormElements/Input";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import ErrorModal from "../../shared/components/UIElements/ErrorModal";
-import ImageUpload from '../../shared/components/UIElements/FormElements/ImageUpload';
+//import ImageUpload from '../../shared/components/UIElements/FormElements/ImageUpload';
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_MINLENGTH,
@@ -42,7 +42,7 @@ const Auth = () => {
         {
           ...formState.inputs,
           name: undefined,
-          image: undefined
+         // image: undefined
         },
         formState.inputs.email.isValid && formState.inputs.password.isValid
       );
@@ -54,10 +54,10 @@ const Auth = () => {
             value: "",
             isValid: false
           },
-          image: {
-            value: null,
-            isValid: false
-          }
+          // image: {
+          //   value: null,
+          //   isValid: false
+          // }
         },
         false
       );
@@ -83,7 +83,7 @@ const Auth = () => {
             'Content-Type': 'application/json'
           }
         );
-        auth.login(responseData.user.id);
+        auth.login(responseData.userId, responseData.token);
       } catch (err) {}
     } else {
       try {
@@ -105,7 +105,7 @@ const Auth = () => {
           }
         );
 
-        auth.login(responseData.user.id);
+        auth.login(responseData.userId, responseData.token);
       } catch (err) {}
     }
   };
@@ -125,11 +125,11 @@ const Auth = () => {
               type="text"
               label="Your Name"
               validators={[VALIDATOR_REQUIRE]}
-              errorText="Please enter e name"
+              errorText="Please enter a name"
               onInput={inputHandler}
             />
           )}
-          {!isLoginMode && <ImageUpload center id="image" onInput={inputHandler}/>}
+          {/* {!isLoginMode && <ImageUpload center id="image" onInput={inputHandler}/>} */}
           <Input
             element="input"
             id="email"
